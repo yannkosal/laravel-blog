@@ -3,14 +3,13 @@
         <a href="{{ route('home') }}">
             <x-application-mark />
         </a>
-
         <div class="top-menu ml-10">
             <div class="flex space-x-4">
                 <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
-                    {{ __('Home') }}
+                    {{ __('menu.home') }}
                 </x-nav-link>
-                <x-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.blog')">
-                    {{ __('Blog') }}
+                <x-nav-link href="{{ route('posts.blog') }}" :active="request()->routeIs('posts.blog')">
+                    {{ __('menu.forum') }}
                 </x-nav-link>
             </div>
         </div>

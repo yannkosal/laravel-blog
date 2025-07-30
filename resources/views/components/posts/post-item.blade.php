@@ -1,6 +1,5 @@
 @props(['post'])
-
-<article class="[&:not(:last-child)]:border-b border-gray-100 pb-10">
+<article {{ $attributes->merge(['class' => '[&:not(:last-child)]:border-b border-gray-100 pb-10']) }}>
     <div class="article-body grid grid-cols-12 gap-3 mt-5 items-start">
         <div class="article-thumbnail col-span-4 flex items-center">
             <a wire:navigate href="{{ route('posts.show', $post->slug) }}">
@@ -17,7 +16,6 @@
                     {{ $post->title }}
                 </a>
             </h2>
-
             <p class="mt-2 text-base text-gray-700 font-light">
                 {{ $post->getExcerpt() }}
             </p>
@@ -31,7 +29,7 @@
                     </div>
                 </div>
                 <div>
-                    <livewire:like-button :key="$post->id" :$post />
+                    <livewire:like-button :key="'like-' . $post->id" :$post />
                 </div>
             </div>
         </div>

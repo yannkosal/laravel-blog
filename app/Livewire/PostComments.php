@@ -21,20 +21,18 @@ class PostComments extends Component
         if (!Auth::check()) {
             return;
         }
-
         $this->validateOnly('comment');
 
         $this->post->comments()->create([
             'comment' => $this->comment,
             'user_id' => Auth::id()
         ]);
-
         $this->reset('comment');
     }
     #[Computed()]
     public function comments()
     {
-        return $this?->post?->comments()->latest()->paginate(5);
+        return $this?->post?->comments()->with('user')->latest()->paginate(5);
     }
     public function render()
     {

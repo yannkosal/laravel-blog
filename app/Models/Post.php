@@ -6,14 +6,12 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Post extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
     protected $fillable = [
         'user_id',
         'title',
@@ -23,14 +21,12 @@ class Post extends Model
         'published_at',
         'featured'
     ];
-
     protected function casts(): array
     {
         return [
             'published_at' => 'datetime'
         ];
     }
-
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -70,7 +66,7 @@ class Post extends Model
     }
     public function scopeSearch($query, $search = '')
     {
-        $query->where('title', 'like', "%{$this->search}%");
+        $query->where('title', 'like', "%{$search}%");
     }
     public function getExcerpt()
     {
@@ -84,7 +80,6 @@ class Post extends Model
     public function getThumbnailUrl()
     {
         $isUrl = str_contains($this->image, 'http');
-
         return $isUrl
             ? $this->image
             : asset('storage/' . ltrim($this->image, '/'));
