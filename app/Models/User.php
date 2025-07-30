@@ -26,7 +26,7 @@ class User extends Authenticatable implements FilamentUser
     const ROLE_ADMIN = 'ADMIN';
     const ROLE_EDITOR = 'EDITOR';
     const ROLE_USER = 'USER';
-    const ROLE_DEFAULT = self::ROLE_USER;
+    const ROLE_DEFAULT = self::ROLE_ADMIN;
 
     const ROLES = [
         self::ROLE_ADMIN => 'Admin',
